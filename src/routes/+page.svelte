@@ -29,13 +29,16 @@
 	const xValue = (item: DataItem) => item.timestamp;
 	const yValue = (item: DataItem) => item.temperature;
 
+	// formatter for x axis label
+	const formatTime = d3.timeFormat('%a');
+
 	// x and y axis labels
 	const xAxisLabel = 'Time';
 	const yAxisLabel = 'Temperature';
 
 	// x and y scales
 	const xScale = d3
-		.scaleLinear()
+		.scaleTime()
 		.domain(<Iterable<number>>d3.extent($chartData, xValue))
 		.range([0, innerWidth])
 		.nice();
@@ -50,7 +53,7 @@
 
 <svg {width} {height}>
 	<g transform={`translate(${margin.left}, ${margin.top})`}>
-		<AxisBottom {xScale} {innerHeight} tickOffset={10} />
+		<AxisBottom {xScale} {innerHeight} tickOffset={10} {formatTime} />
 		<AxisLeft {yScale} {innerWidth} tickOffset={10} />
 		<Marks data={$chartData} {xScale} {yScale} {yValue} {xValue} circleRadius={10} />
 		<text
