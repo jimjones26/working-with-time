@@ -13,8 +13,20 @@
 	$: numberOfItems = $chartData.length;
 	$: numberOfColumns = Object.entries($chartData[0]).length;
 
+	// width, height and margins for svg container
+	const width: number = 960;
+	const height: number = 500;
+	const margin = { top: 20, right: 30, bottom: 50, left: 70 };
+
+	// inner height and width of chart
+	const innerHeight = height - margin.top - margin.bottom;
+	const innerWidth = width - margin.left - margin.right;
+
 	console.log('Date: ', new Date($chartData[0].timestamp as string));
 </script>
 
+<svg {width} {height}>
+	<g transform={`translate(${margin.left}, ${margin.top})`} />
+</svg>
+
 <ChartDataStats {dataSize} {numberOfItems} {numberOfColumns} />
-{JSON.stringify($chartData)}
