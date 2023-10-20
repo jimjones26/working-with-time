@@ -42,7 +42,7 @@
 	const yScale = d3
 		.scaleLinear()
 		.domain(<Iterable<number>>d3.extent($chartData, yValue))
-		.range([0, innerHeight])
+		.range([innerHeight, 0])
 		.nice();
 
 	console.log('Date: ', new Date($chartData[0].timestamp as string));
