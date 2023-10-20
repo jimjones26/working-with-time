@@ -22,6 +22,14 @@
 	const innerHeight = height - margin.top - margin.bottom;
 	const innerWidth = width - margin.left - margin.right;
 
+	// x and y axis values
+	const xValue = (item: DataItem) => item.timestamp;
+	const yValue = (item: DataItem) => item.temperature;
+
+	// x and y axis labels
+	const xAxisLabel = 'Time';
+	const yAxisLabel = 'Temperature';
+
 	console.log('Date: ', new Date($chartData[0].timestamp as string));
 </script>
 
