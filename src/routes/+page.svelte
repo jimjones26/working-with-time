@@ -4,6 +4,9 @@
 	import ChartDataStats from '$lib/components/ChartDataStats.svelte';
 	import type { Writable } from 'svelte/store';
 	import type { DataItem } from '$lib/stores/DataItemInterface';
+	import AxisBottom from '$lib/components/AxisBottom.svelte';
+	import AxisLeft from '$lib/components/AxisLeft.svelte';
+	import Marks from '$lib/components/Marks.svelte';
 
 	// grab the chart data from the store
 	const chartData: Writable<Array<DataItem>> = getContext('parsedData');
@@ -46,7 +49,19 @@
 </script>
 
 <svg {width} {height}>
-	<g transform={`translate(${margin.left}, ${margin.top})`} />
+	<g transform={`translate(${margin.left}, ${margin.top})`}>
+		<AxisBottom {xScale} {innerHeight} tickOffset={10} />
+		<AxisLeft {yScale} {innerWidth} tickOffset={10} />
+		<Marks data={$chartData} {xScale} {yScale} {yValue} {xValue} circleRadius={10} />
+		<text
+			text-anchor="middle"
+			transform={`translate(${-40}, ${innerHeight / 2}) rotate(-90)`}
+			fill="#635F5D">{yAxisLabel}</text
+		>
+		<text x={innerWidth / 2} y={innerHeight + 40} text-anchor="middle" fill="#635F5D"
+			>{xAxisLabel}</text
+		></g
+	>
 </svg>
 
 <ChartDataStats {dataSize} {numberOfItems} {numberOfColumns} />
