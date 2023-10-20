@@ -13,10 +13,14 @@
 <path
 	fill="none"
 	stroke="#137B80"
+	stroke-width={2}
+	stroke-linejoin="round"
+	stroke-linecap="round"
 	d={d3
 		.line()
 		.x((d) => xScale(xValue(d)))
-		.y((d) => yScale(yValue(d)))(data)}
+		.y((d) => yScale(yValue(d)))
+		.curve(d3.curveNatural)(data)}
 />
 {#each data as item, i}
 	<circle cx={xScale(xValue(item))} cy={yScale(yValue(item))} r={circleRadius} fill="#137B80">
