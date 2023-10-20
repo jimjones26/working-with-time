@@ -30,6 +30,18 @@
 	const xAxisLabel = 'Time';
 	const yAxisLabel = 'Temperature';
 
+	// x and y scales
+	const xScale = d3
+		.scaleLinear()
+		.domain(<Iterable<number>>d3.extent($chartData, xValue))
+		.range([0, innerWidth])
+		.nice();
+	const yScale = d3
+		.scaleLinear()
+		.domain(<Iterable<number>>d3.extent($chartData, yValue))
+		.range([0, innerHeight])
+		.nice();
+
 	console.log('Date: ', new Date($chartData[0].timestamp as string));
 </script>
 
